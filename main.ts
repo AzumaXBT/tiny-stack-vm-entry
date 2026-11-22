@@ -1,10 +1,11 @@
 import{mkdirSync as K,readdirSync as L,readFileSync as R,writeFileSync as S}from"node:fs";
 import{join as J}from"node:path";
 const T={0:[0,0,0],1:[1,0,1],2:[4,0,1],3:[0,1,0],4:[0,1,2],5:[0,2,2],6:[0,2,3],7:[0,3,3],16:[0,2,1],17:[0,2,1],18:[0,2,1],19:[0,2,1],20:[0,2,1],21:[0,2,1],22:[0,2,1],23:[0,1,1],24:[0,2,1],25:[0,2,1],26:[0,2,1],27:[0,1,1],28:[0,2,1],29:[0,2,1],30:[0,2,1],32:[0,2,1],33:[0,2,1],34:[0,2,1],48:[2,0,0],49:[2,1,0],50:[2,1,0],51:[2,0,0],52:[0,0,0],64:[0,1,1],65:[0,2,0],80:[0,1,0],81:[0,1,0],82:[0,0,1],83:[0,1,0]};
+const D=new Int32Array(256),C=new Int32Array(64),M=new Int32Array(256),U=new Uint8Array(65536);
 function run(P,Q){
-const D=new Int32Array(256),C=new Int32Array(64),M=new Int32Array(256),O=new Uint8Array(65536);
+D.fill(0);C.fill(0);M.fill(0);
 let sp=0,cs=0,ol=0,ip=0,pc=0,st=0;
-const n=P.length,end=c=>[O.slice(0,ol),c];
+const n=P.length,end=c=>[U.slice(0,ol),c];
 for(;;){
 if(st===1e6)return end(10);
 if(pc<0||pc>=n)return end(9);
@@ -32,8 +33,8 @@ case 51:if(cs===64)return end(7);C[cs++]=nx;pc=P[nx-2]|(P[nx-1]<<8);break;
 case 52:if(cs===0)return end(8);pc=C[--cs];break;
 case 64:{const a=D[sp-1];if(a<0||a>255)return end(6);D[sp-1]=M[a];break;}
 case 65:{const a=D[sp-1],v=D[sp-2];if(a<0||a>255)return end(6);sp-=2;M[a]=v;break;}
-case 80:{const s=String(D[sp-1]);if(ol+s.length>65536)return end(11);for(let k=0;k<s.length;k++)O[ol++]=s.charCodeAt(k);sp--;break;}
-case 81:if(ol+1>65536)return end(11);O[ol++]=D[--sp]&255;break;
+case 80:{const s=String(D[sp-1]);if(ol+s.length>65536)return end(11);for(let k=0;k<s.length;k++)U[ol++]=s.charCodeAt(k);sp--;break;}
+case 81:if(ol+1>65536)return end(11);U[ol++]=D[--sp]&255;break;
 case 82:D[sp++]=ip<Q.length?Q[ip++]:-1;break;
 case 83:return end(D[--sp]&255);
 default:{const b=D[sp-1],a=D[sp-2];let r=0;
